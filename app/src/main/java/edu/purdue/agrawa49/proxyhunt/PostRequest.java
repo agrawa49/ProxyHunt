@@ -27,9 +27,10 @@ public class PostRequest extends AppCompatActivity {
         final String loc = String.valueOf(e3.getText());
 
         b1.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
+            public void onClick(View arg0) {
                 acceptRequest.prepareListData(course, time, loc);
                 Intent next = new Intent(getApplicationContext(), AcceptRequest.class);
+                startActivity(next);
             }
         });
     }
