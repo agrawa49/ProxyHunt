@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button b1 = (Button) findViewById(R.id.accept);
         Button b2 = (Button) findViewById(R.id.request);
-
+        //f
         b2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
                 Intent next = new Intent(getApplicationContext(), PostRequest.class);
