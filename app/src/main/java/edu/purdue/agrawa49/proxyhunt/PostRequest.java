@@ -4,6 +4,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
 
 public class PostRequest extends AppCompatActivity {
 
@@ -11,6 +13,15 @@ public class PostRequest extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_request);
+
+        Button b1 = (Button) findViewById(R.id.submit);
+        EditText e1 = (EditText) findViewById(R.id.course);
+        EditText e2 = (EditText) findViewById(R.id.time);
+        EditText e3 = (EditText) findViewById(R.id.location);
+
+        String course = String.valueOf(e1.getText());
+        String time = String.valueOf(e2.getText());
+        String loc = String.valueOf(e3.getText());
     }
 
     @Override
