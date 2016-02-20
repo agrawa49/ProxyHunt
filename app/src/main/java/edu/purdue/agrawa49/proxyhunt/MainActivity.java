@@ -12,15 +12,16 @@ import com.firebase.client.Firebase;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String Firebase_url = "https://blinding-fire-6276.firebaseio.com";
+    private Firebase firebaseRef;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Firebase.setAndroidContext(this);
         setContentView(R.layout.activity_main);
-
+        Firebase.setAndroidContext(this);
+        firebaseRef = new Firebase(Firebase_url);
         Button b1 = (Button) findViewById(R.id.accept);
         Button b2 = (Button) findViewById(R.id.request);
-        //f
         b2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
                 Intent next = new Intent(getApplicationContext(), PostRequest.class);
