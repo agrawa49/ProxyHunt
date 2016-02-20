@@ -1,9 +1,11 @@
 package edu.purdue.agrawa49.proxyhunt;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -14,14 +16,22 @@ public class PostRequest extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_request);
 
+        final AcceptRequest acceptRequest = new AcceptRequest();
         Button b1 = (Button) findViewById(R.id.submit);
         EditText e1 = (EditText) findViewById(R.id.course);
         EditText e2 = (EditText) findViewById(R.id.time);
         EditText e3 = (EditText) findViewById(R.id.location);
 
-        String course = String.valueOf(e1.getText());
-        String time = String.valueOf(e2.getText());
-        String loc = String.valueOf(e3.getText());
+        final String course = String.valueOf(e1.getText());
+        final String time = String.valueOf(e2.getText());
+        final String loc = String.valueOf(e3.getText());
+
+        b1.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                acceptRequest.prepareListData(course, time, loc);
+                Intent next = new Intent(getApplicationContext(), AcceptRequest.class);
+            }
+        });
     }
 
     @Override
