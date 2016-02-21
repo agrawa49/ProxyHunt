@@ -11,12 +11,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/course"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="39dp"
         android:editable="true"
         android:enabled="true"
-        android:hint="Enter class" />
+        android:hint="Enter class"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -24,11 +23,11 @@
         android:inputType="textPostalAddress"
         android:ems="10"
         android:id="@+id/location"
-        android:layout_marginTop="56dp"
         android:editable="true"
         android:enabled="true"
         android:hint="Enter your location"
-        android:layout_below="@+id/time"
+        android:layout_marginTop="58dp"
+        android:layout_below="@+id/classLocation"
         android:layout_alignLeft="@+id/classLocation"
         android:layout_alignStart="@+id/classLocation" />
 
@@ -38,12 +37,12 @@
         android:inputType="time"
         android:ems="10"
         android:id="@+id/time"
-        android:layout_marginTop="90dp"
-        android:layout_below="@+id/course"
-        android:layout_centerHorizontal="true"
+        android:layout_marginTop="35dp"
         android:editable="true"
         android:enabled="true"
-        android:hint="Enter time of class" />
+        android:hint="Enter time of class"
+        android:layout_below="@+id/course"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -59,8 +58,19 @@
         android:inputType="textPostalAddress"
         android:ems="10"
         android:id="@+id/classLocation"
-        android:layout_above="@+id/submit"
+        android:hint="Enter location of class"
+        android:layout_below="@+id/time"
         android:layout_alignLeft="@+id/time"
         android:layout_alignStart="@+id/time"
-        android:hint="Enter location of class" />
+        android:layout_marginTop="63dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:ems="10"
+        android:id="@+id/cellNumber"
+        android:layout_above="@+id/submit"
+        android:layout_centerHorizontal="true"
+        android:hint="Enter cell number" />
 </RelativeLayout>

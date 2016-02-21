@@ -10,13 +10,15 @@ public class SendInfo {
     private String time;
     private String loc;
     private String cloc;
+    private String cellNumber;
     public SendInfo(){
     }
-    public SendInfo(String course, String time, String loc, String cloc) {
+    public SendInfo(String course, String time, String loc, String cloc, String cellNumber) {
         this.course = course;
         this.time = time;
         this.loc = loc;
         this.cloc = cloc;
+        this.cellNumber = cellNumber;
     }
     public String getCourse() {
         return course;
@@ -27,8 +29,7 @@ public class SendInfo {
     public String getLoc() {
         return loc;
     }
-    public String getCloc() {
-        return cloc;
-    }
+    public String getCloc() { return cloc; }
+    public String getCellNumber() { return cellNumber; }
 }
 

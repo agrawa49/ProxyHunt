@@ -8,6 +8,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
 
 import com.firebase.client.Firebase;
 
@@ -44,14 +46,20 @@ public class PostRequest extends AppCompatActivity {
         EditText e2 = (EditText) findViewById(R.id.time);
         EditText e3 = (EditText) findViewById(R.id.location);
         EditText e4 = (EditText) findViewById(R.id.classLocation);
+        EditText e5 = (EditText) findViewById(R.id.cellNumber);
 
         String course = e1.getText().toString();
         String time = e2.getText().toString();
         String loc = e3.getText().toString();
         String cloc = e4.getText().toString();
+        String cellNumber = e5.getText().toString();
+
         if (!course.equals("")) {
-            SendInfo si = new SendInfo(course, time, loc, cloc);
+            SendInfo si = new SendInfo(course, time, loc, cloc, cellNumber);
             firebaseRef.push().setValue(si);
+
+            Toast.makeText(getApplicationContext(), "Your request has been recorded.\nYou will be contacted if accepted!", Toast.LENGTH_LONG).show();
+
             Intent next = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(next);
         }
