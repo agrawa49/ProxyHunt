@@ -39,8 +39,7 @@ public class PostRequest extends AppCompatActivity {
         b1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
                 send();
-                Intent next = new Intent(getApplicationContext(), AcceptRequest.class);
-                startActivity(next);
+
             }
         });
     }
@@ -55,6 +54,8 @@ public class PostRequest extends AppCompatActivity {
         if (!course.equals("")) {
             SendInfo si = new SendInfo(course, time, loc);
             firebaseRef.push().setValue(si);
+            Intent next = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(next);
         }
     }
     @Override
