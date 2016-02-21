@@ -112,7 +112,7 @@ public class AcceptRequest extends AppCompatActivity {
                   //  }
                    // if(c == 0)
                     courselist.add("Name:\t" + info.getCourse() + "\tLocation:\t" + info.getCloc() +
-                            "\tClass time:\t" + info.getTime());
+                            "\tTime:\t" + info.getTime());
                         //Log.e("aviral", info.toString());
 
                     /**
