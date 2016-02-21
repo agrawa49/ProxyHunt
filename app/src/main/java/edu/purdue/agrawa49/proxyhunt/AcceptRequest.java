@@ -41,7 +41,8 @@ public class AcceptRequest extends AppCompatActivity {
 //    }
 //    private ExpandableListAdapter listAdapter;
 //    private ExpandableListView expListView;
-      List<String> courselist=new ArrayList<>();
+    List<SendInfo> request = new ArrayList<>();
+    List<String> courselist=new ArrayList<>();
     private SwipeRefreshLayout swipeContainer;
     ArrayAdapter<String> adapter;
 
@@ -98,8 +99,8 @@ public class AcceptRequest extends AppCompatActivity {
                 //Log.e("aviral", "on data change entered");
                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                     SendInfo info = postSnapshot.getValue(SendInfo.class);
-
-                        courselist.add(info.getCourse());
+                    request.add(info);
+                    courselist.add(info.getCourse());
                         //Log.e("aviral", info.toString());
 
                     /**
@@ -133,6 +134,18 @@ public class AcceptRequest extends AppCompatActivity {
         ListView list = (ListView) findViewById(R.id.listViewAccept);
         list.setAdapter(adapter);
         swipeContainer.setRefreshing(false);
+        list.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String name = courselist.get(position);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         //e1.setText(course);
     }
