@@ -15,7 +15,10 @@
         android:enabled="true"
         android:hint="Enter class"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignLeft="@+id/time"
+        android:layout_alignStart="@+id/time"
+        android:layout_alignRight="@+id/time"
+        android:layout_alignEnd="@+id/time" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -49,6 +52,7 @@
         android:layout_height="wrap_content"
         android:text="Submit request"
         android:id="@+id/submit"
+        android:background="@color/orange"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 

@@ -94,6 +94,7 @@ public class AcceptRequest extends AppCompatActivity {
     }
 
     public  void prepareListData() {
+        request.clear();
         firebaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
@@ -156,8 +157,20 @@ public class AcceptRequest extends AppCompatActivity {
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                System.out.println(request.size());
+                                System.out.println(request.get(position));
                                 request.remove(position);
+                                System.out.println(request.size());
                                 firebaseRef.removeValue();
+                                for (int i = 0; i < request.size(); i++) {
+                                    String course = request.get(i).getCourse();
+                                    String time = request.get(i).getTime();
+                                    String loc = request.get(i).getLoc();
+                                    String cloc = request.get(i).getCloc();
+                                    String num = request.get(i).getCellNumber();
+                                    firebaseRef.push().setValue(new SendInfo(course, time, loc, cloc, num));
+
+                                }
                             }
                         })
                         .setNegativeButton("No", new DialogInterface.OnClickListener() {
