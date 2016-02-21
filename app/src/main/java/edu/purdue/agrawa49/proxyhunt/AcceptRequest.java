@@ -64,7 +64,8 @@ public class AcceptRequest extends AppCompatActivity {
                 // Your code to refresh the list here.
                 // Make sure you call swipeContainer.setRefreshing(false)
                 // once the network request has completed successfully.
-                prepareListData();
+                //prepareListData();
+                onResume();
             }
         });
         // Configure the refreshing colors
@@ -91,7 +92,9 @@ public class AcceptRequest extends AppCompatActivity {
         firebaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                //  System.out.println("There are " + snapshot.getChildrenCount() + " blog posts");
+                if (adapter != null) {
+                    adapter.clear();
+                }                //  System.out.println("There are " + snapshot.getChildrenCount() + " blog posts");
                 //Log.e("aviral", "on data change entered");
                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                     SendInfo info = postSnapshot.getValue(SendInfo.class);
@@ -122,9 +125,9 @@ public class AcceptRequest extends AppCompatActivity {
 //        for (int i = 0; i < courselist.size(); i++) {
 //            myitems[i] = courselist.get(i);
 //        }
-        if (adapter != null && swipeContainer.isRefreshing()) {
-            adapter.clear();
-        }
+//        if (adapter != null && swipeContainer.isRefreshing()) {
+//            adapter.clear();
+//        }
         //prepareListData();
     adapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, courselist);
         ListView list = (ListView) findViewById(R.id.listViewAccept);
@@ -132,7 +135,6 @@ public class AcceptRequest extends AppCompatActivity {
         swipeContainer.setRefreshing(false);
 
         //e1.setText(course);
-
     }
 //    TextView e1 = (TextView) findViewById(R.id.cv);
 //    public void updateList(String course) {
