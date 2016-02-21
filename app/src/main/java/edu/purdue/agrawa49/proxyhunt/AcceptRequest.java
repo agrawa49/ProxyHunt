@@ -100,6 +100,12 @@ public class AcceptRequest extends AppCompatActivity {
                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                     SendInfo info = postSnapshot.getValue(SendInfo.class);
                     request.add(info);
+                    int c = 0;
+                    for (int i = 0; i < courselist.size(); i++) {
+                        if (courselist.get(i).equalsIgnoreCase(info.getCourse()))
+                            c++;
+                    }
+                    if(c == 0)
                     courselist.add(info.getCourse());
                         //Log.e("aviral", info.toString());
 
