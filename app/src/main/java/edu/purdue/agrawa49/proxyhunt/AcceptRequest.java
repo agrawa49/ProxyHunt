@@ -148,10 +148,12 @@ public class AcceptRequest extends AppCompatActivity {
                 String name = courselist.get(position);
                 request.remove(position);
                 firebaseRef.removeValue();
-                for (int i = 0; i < request.size(); i++) {
-                    SendInfo si = new SendInfo(request.get(i).getCourse(), request.get(i).getTime(), request.get(i).getLoc(), request.get(i).getCloc(), request.get(i).getCellNumber());
-                    firebaseRef.push().setValue(si);
-                }
+         //       System.out.println(request.toArray().toString());
+//                for (int i = 0; i < request.size(); i++) {
+//                    SendInfo si = new SendInfo(request.get(i).getCourse(), request.get(i).getTime(), request.get(i).getLoc(), request.get(i).getCloc(), request.get(i).getCellNumber());
+//                   firebaseRef.push().setValue(si);
+
+//                }
             }
 //            @Override
 //            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
