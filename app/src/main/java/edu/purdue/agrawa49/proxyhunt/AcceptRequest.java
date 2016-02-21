@@ -111,7 +111,7 @@ public class AcceptRequest extends AppCompatActivity {
                           //  c++;
                   //  }
                    // if(c == 0)
-                    courselist.add("Name:\t" + info.getCourse() + "\tClass location:\t" + info.getCloc() +
+                    courselist.add("Name:\t" + info.getCourse() + "\tLocation:\t" + info.getCloc() +
                             "\tClass time:\t" + info.getTime());
                         //Log.e("aviral", info.toString());
 
