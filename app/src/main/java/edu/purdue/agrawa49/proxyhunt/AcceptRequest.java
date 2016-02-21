@@ -1,5 +1,7 @@
 package edu.purdue.agrawa49.proxyhunt;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -146,11 +148,27 @@ public class AcceptRequest extends AppCompatActivity {
         swipeContainer.setRefreshing(false);
         list.setOnItemClickListener(new OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String name = courselist.get(position);
-                request.remove(position);
-                firebaseRef.removeValue();
-         //       System.out.println(request.toArray().toString());
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(AcceptRequest.this);
+                builder.setTitle("Confirmation")
+                        .setMessage("Do you accept this request?")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                request.remove(position);
+                                firebaseRef.removeValue();                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+                prepareListData();
+                //       System.out.println(request.toArray().toString());
 //                for (int i = 0; i < request.size(); i++) {
 //                    SendInfo si = new SendInfo(request.get(i).getCourse(), request.get(i).getTime(), request.get(i).getLoc(), request.get(i).getCloc(), request.get(i).getCellNumber());
 //                   firebaseRef.push().setValue(si);
