@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.app.ListActivity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -12,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import android.app.Activity;
@@ -38,8 +40,9 @@ public class AcceptRequest extends AppCompatActivity {
 //    }
 //    private ExpandableListAdapter listAdapter;
 //    private ExpandableListView expListView;
-//    List<String> courselist;
-    private TextView e1;
+      List<String> courselist=new ArrayList<>();
+
+
 //    private HashMap<String, List<String>> listDataChild;
 
     private static final String Firebase_url = "https://blinding-fire-6276.firebaseio.com";
@@ -49,7 +52,9 @@ public class AcceptRequest extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accept_request);
-        e1 = (TextView) findViewById(R.id.cv);
+
+        //prepareListData();
+
     }
 
     @Override
@@ -58,6 +63,7 @@ public class AcceptRequest extends AppCompatActivity {
         super.onResume();
         firebaseRef = new Firebase(Firebase_url);
         prepareListData();
+        updateList();
     }
 
     public  void prepareListData() {
@@ -65,10 +71,12 @@ public class AcceptRequest extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 //  System.out.println("There are " + snapshot.getChildrenCount() + " blog posts");
+                //Log.e("aviral", "on data change entered");
                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                     SendInfo info = postSnapshot.getValue(SendInfo.class);
-                    //courselist.add(info.getCourse());
-                    updateList(info.getCourse());
+
+                        courselist.add(info.getCourse());
+                        //Log.e("aviral", info.toString());
 
                     /**
                      * custom adapter List<SendInfo>
@@ -86,8 +94,16 @@ public class AcceptRequest extends AppCompatActivity {
     }
 
 
-    public void updateList(String course) {
-        e1.setText(course);
+    public void updateList() {
+        //String[] myitems = {"sfsf", "dawda"};
+//        String[] myitems = new String[courselist.size()];
+//        for (int i = 0; i < courselist.size(); i++) {
+//            myitems[i] = courselist.get(i);
+//        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, courselist);
+        ListView list = (ListView) findViewById(R.id.listViewAccept);
+        list.setAdapter(adapter);
+        //e1.setText(course);
     }
 //    TextView e1 = (TextView) findViewById(R.id.cv);
 //    public void updateList(String course) {
