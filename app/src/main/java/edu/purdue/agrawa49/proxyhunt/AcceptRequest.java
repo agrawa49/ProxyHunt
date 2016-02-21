@@ -36,10 +36,11 @@ public class AcceptRequest extends AppCompatActivity {
 //        super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activity_accept_request);
 //    }
-    static ExpandableListAdapter listAdapter;
-    static ExpandableListView expListView;
-    static List<String> listDataHeader;
-    static HashMap<String, List<String>> listDataChild;
+//    private ExpandableListAdapter listAdapter;
+//    private ExpandableListView expListView;
+//    List<String> courselist;
+    private TextView e1;
+//    private HashMap<String, List<String>> listDataChild;
 
     private static final String Firebase_url = "https://blinding-fire-6276.firebaseio.com";
     private Firebase firebaseRef;
@@ -48,18 +49,35 @@ public class AcceptRequest extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accept_request);
+        e1 = (TextView) findViewById(R.id.cv);
+    }
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
         firebaseRef = new Firebase(Firebase_url);
+        prepareListData();
     }
 
     public  void prepareListData() {
         firebaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-              //  System.out.println("There are " + snapshot.getChildrenCount() + " blog posts");
-                for (DataSnapshot postSnapshot: snapshot.getChildren()) {
+                //  System.out.println("There are " + snapshot.getChildrenCount() + " blog posts");
+                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                     SendInfo info = postSnapshot.getValue(SendInfo.class);
+                    //courselist.add(info.getCourse());
+                    updateList(info.getCourse());
+
+                    /**
+                     * custom adapter List<SendInfo>
+                     *     getView
+                     *             create rows taking the data SendInfo
+                     */
                 }
             }
+
             @Override
             public void onCancelled(FirebaseError firebaseError) {
                 System.out.println("The read failed: " + firebaseError.getMessage());
@@ -67,10 +85,14 @@ public class AcceptRequest extends AppCompatActivity {
         });
     }
 
-    EditText e1 = (EditText) findViewById(R.id.cv);
-    public void updateList() {
 
+    public void updateList(String course) {
+        e1.setText(course);
     }
+//    TextView e1 = (TextView) findViewById(R.id.cv);
+//    public void updateList(String course) {
+//        e1.setText(course);
+//    }
 
         // get the listview
         // expListView = (ExpandableListView) findViewById(R.id.lvExp);
