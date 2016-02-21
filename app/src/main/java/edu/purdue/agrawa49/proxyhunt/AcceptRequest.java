@@ -108,7 +108,9 @@ public class AcceptRequest extends AppCompatActivity {
                           //  c++;
                   //  }
                    // if(c == 0)
-                    courselist.add(info.getCourse());
+                    courselist.add("Class name:\t" + info.getCourse() + "\tClass location:\t" + info.getCloc() +
+                            "\tClass time:\t" + info.getTime() + "\tRequester's location:\t" + info.getLoc() + "\tContact #:\t"
+                            + info.getCellNumber());
                         //Log.e("aviral", info.toString());
 
                     /**
@@ -165,61 +167,5 @@ public class AcceptRequest extends AppCompatActivity {
 //                prepareListData();
 //            }
         });
-
-        //e1.setText(course);
     }
-//    TextView e1 = (TextView) findViewById(R.id.cv);
-//    public void updateList(String course) {
-//        e1.setText(course);
-//    }
-
-        // get the listview
-        // expListView = (ExpandableListView) findViewById(R.id.lvExp);
-
-        // preparing list data
-        //prepareListData();
-
-        // listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
-
-        // setting list adapter
-     //   expListView.setAdapter(listAdapter);
-    }
-    /*
-     * Preparing the list data
-     */
-//    public static void prepareListData(String c, String t, String l) {
-//        listDataHeader = new ArrayList<String>();
-//        listDataChild = new HashMap<String, List<String>>();
-//
-//        // Adding child data
-//        listDataHeader.add(c);
-//        // Adding child data
-//        List<String> x = new ArrayList<String>();
-//        x.add(t);
-////        top250.add("The Godfather");
-////        top250.add("The Godfather: Part II");
-////        top250.add("Pulp Fiction");
-////        top250.add("The Good, the Bad and the Ugly");
-////        top250.add("The Dark Knight");
-////        top250.add("12 Angry Men");
-////
-////        List<String> nowShowing = new ArrayList<String>();
-////        nowShowing.add("The Conjuring");
-////        nowShowing.add("Despicable Me 2");
-////        nowShowing.add("Turbo");
-////        nowShowing.add("Grown Ups 2");
-////        nowShowing.add("Red 2");
-////        nowShowing.add("The Wolverine");
-////
-////        List<String> comingSoon = new ArrayList<String>();
-////        comingSoon.add("2 Guns");
-////        comingSoon.add("The Smurfs 2");
-////        comingSoon.add("The Spectacular Now");
-////        comingSoon.add("The Canyons");
-////        comingSoon.add("Europa Report");
-//
-//        listDataChild.put(listDataHeader.get(0), x); // Header, Child data
-////        listDataChild.put(listDataHeader.get(1), nowShowing);
-////        listDataChild.put(listDataHeader.get(2), comingSoon);
-//    }
-
+}
