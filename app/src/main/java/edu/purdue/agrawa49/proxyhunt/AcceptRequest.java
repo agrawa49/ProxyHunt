@@ -157,7 +157,8 @@ public class AcceptRequest extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 request.remove(position);
-                                firebaseRef.removeValue();                            }
+                                firebaseRef.removeValue();
+                            }
                         })
                         .setNegativeButton("No", new DialogInterface.OnClickListener() {
                             @Override
