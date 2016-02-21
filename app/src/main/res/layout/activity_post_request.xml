@@ -24,13 +24,13 @@
         android:inputType="textPostalAddress"
         android:ems="10"
         android:id="@+id/location"
-        android:layout_marginTop="101dp"
-        android:layout_below="@+id/time"
-        android:layout_alignLeft="@+id/time"
-        android:layout_alignStart="@+id/time"
+        android:layout_marginTop="56dp"
         android:editable="true"
         android:enabled="true"
-        android:hint="Enter your location" />
+        android:hint="Enter your location"
+        android:layout_below="@+id/time"
+        android:layout_alignLeft="@+id/classLocation"
+        android:layout_alignStart="@+id/classLocation" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -52,4 +52,15 @@
         android:id="@+id/submit"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPostalAddress"
+        android:ems="10"
+        android:id="@+id/classLocation"
+        android:layout_above="@+id/submit"
+        android:layout_alignLeft="@+id/time"
+        android:layout_alignStart="@+id/time"
+        android:hint="Enter location of class" />
 </RelativeLayout>

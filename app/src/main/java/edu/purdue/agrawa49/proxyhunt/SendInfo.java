@@ -9,13 +9,14 @@ public class SendInfo {
     private String course;
     private String time;
     private String loc;
+    private String cloc;
     public SendInfo(){
-
     }
-    public SendInfo(String course, String time, String loc) {
+    public SendInfo(String course, String time, String loc, String cloc) {
         this.course = course;
         this.time = time;
         this.loc = loc;
+        this.cloc = cloc;
     }
     public String getCourse() {
         return course;
@@ -26,7 +27,8 @@ public class SendInfo {
     public String getLoc() {
         return loc;
     }
-
-
+    public String getCloc() {
+        return cloc;
     }
+}
 

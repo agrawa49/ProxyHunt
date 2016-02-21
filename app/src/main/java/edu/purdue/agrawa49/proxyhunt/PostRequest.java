@@ -11,8 +11,6 @@ import android.widget.EditText;
 
 import com.firebase.client.Firebase;
 
-import java.util.Random;
-
 public class PostRequest extends AppCompatActivity {
 
 
@@ -28,9 +26,6 @@ public class PostRequest extends AppCompatActivity {
         firebaseRef = new Firebase(Firebase_url);
         final AcceptRequest acceptRequest = new AcceptRequest();
         Button b1 = (Button) findViewById(R.id.submit);
-        EditText e1 = (EditText) findViewById(R.id.course);
-        EditText e2 = (EditText) findViewById(R.id.time);
-        EditText e3 = (EditText) findViewById(R.id.location);
 
 //        final String course = String.valueOf(e1.getText());
 //        final String time = String.valueOf(e2.getText());
@@ -48,11 +43,14 @@ public class PostRequest extends AppCompatActivity {
         EditText e1 = (EditText) findViewById(R.id.course);
         EditText e2 = (EditText) findViewById(R.id.time);
         EditText e3 = (EditText) findViewById(R.id.location);
+        EditText e4 = (EditText) findViewById(R.id.classLocation);
+
         String course = e1.getText().toString();
         String time = e2.getText().toString();
         String loc = e3.getText().toString();
+        String cloc = e4.getText().toString();
         if (!course.equals("")) {
-            SendInfo si = new SendInfo(course, time, loc);
+            SendInfo si = new SendInfo(course, time, loc, cloc);
             firebaseRef.push().setValue(si);
             Intent next = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(next);
