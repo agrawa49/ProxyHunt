@@ -1,5 +1,6 @@
 package edu.purdue.agrawa49.proxyhunt;
 
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.app.ListActivity;
@@ -41,6 +42,10 @@ public class AcceptRequest extends AppCompatActivity {
 //    private ExpandableListAdapter listAdapter;
 //    private ExpandableListView expListView;
       List<String> courselist=new ArrayList<>();
+    private SwipeRefreshLayout swipeContainer;
+    ArrayAdapter<String> adapter;
+
+
 
 
 //    private HashMap<String, List<String>> listDataChild;
@@ -52,6 +57,21 @@ public class AcceptRequest extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accept_request);
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // Your code to refresh the list here.
+                // Make sure you call swipeContainer.setRefreshing(false)
+                // once the network request has completed successfully.
+                prepareListData();
+            }
+        });
+        // Configure the refreshing colors
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
 
         //prepareListData();
 
@@ -62,8 +82,9 @@ public class AcceptRequest extends AppCompatActivity {
     {
         super.onResume();
         firebaseRef = new Firebase(Firebase_url);
-        prepareListData();
-        updateList();
+       prepareListData();
+      //  updateList();
+
     }
 
     public  void prepareListData() {
@@ -84,6 +105,7 @@ public class AcceptRequest extends AppCompatActivity {
                      *             create rows taking the data SendInfo
                      */
                 }
+                updateList();
             }
 
             @Override
@@ -100,10 +122,17 @@ public class AcceptRequest extends AppCompatActivity {
 //        for (int i = 0; i < courselist.size(); i++) {
 //            myitems[i] = courselist.get(i);
 //        }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, courselist);
+        if (adapter != null && swipeContainer.isRefreshing()) {
+            adapter.clear();
+        }
+        //prepareListData();
+    adapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, courselist);
         ListView list = (ListView) findViewById(R.id.listViewAccept);
         list.setAdapter(adapter);
+        swipeContainer.setRefreshing(false);
+
         //e1.setText(course);
+
     }
 //    TextView e1 = (TextView) findViewById(R.id.cv);
 //    public void updateList(String course) {
