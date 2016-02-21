@@ -112,8 +112,7 @@ public class AcceptRequest extends AppCompatActivity {
                   //  }
                    // if(c == 0)
                     courselist.add("Class name:\t" + info.getCourse() + "\tClass location:\t" + info.getCloc() +
-                            "\tClass time:\t" + info.getTime() + "\tRequester's location:\t" + info.getLoc() + "\tContact #:\t"
-                            + info.getCellNumber());
+                            "\tClass time:\t" + info.getTime());
                         //Log.e("aviral", info.toString());
 
                     /**
@@ -157,20 +156,31 @@ public class AcceptRequest extends AppCompatActivity {
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                System.out.println(request.size());
-                                System.out.println(request.get(position));
-                                request.remove(position);
-                                System.out.println(request.size());
-                                firebaseRef.removeValue();
-                                for (int i = 0; i < request.size(); i++) {
-                                    String course = request.get(i).getCourse();
-                                    String time = request.get(i).getTime();
-                                    String loc = request.get(i).getLoc();
-                                    String cloc = request.get(i).getCloc();
-                                    String num = request.get(i).getCellNumber();
-                                    firebaseRef.push().setValue(new SendInfo(course, time, loc, cloc, num));
-
-                                }
+                                AlertDialog.Builder builder1 = new AlertDialog.Builder(AcceptRequest.this);
+                                builder1.setTitle("Details:")
+                                        .setMessage("Course:\t" + request.get(position).getCourse() + "\nLocation of class:\t"
+                                                + request.get(position).getCloc() + "\nTime:\t"
+                                                + request.get(position).getTime() + "\nRequester's location:\t"
+                                                + request.get(position).getLoc() + "\nContact #:\t"
+                                                + request.get(position).getCellNumber())
+                                        .setCancelable(false)
+                                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                request.remove(position);
+                                                firebaseRef.removeValue();
+                                                for (int i = 0; i < request.size(); i++) {
+                                                    String course = request.get(i).getCourse();
+                                                    String time = request.get(i).getTime();
+                                                    String loc = request.get(i).getLoc();
+                                                    String cloc = request.get(i).getCloc();
+                                                    String num = request.get(i).getCellNumber();
+                                                    firebaseRef.push().setValue(new SendInfo(course, time, loc, cloc, num));
+                                                }
+                                            }
+                                        });
+                                AlertDialog alertDialog1 = builder1.create();
+                                alertDialog1.show();
                             }
                         })
                         .setNegativeButton("No", new DialogInterface.OnClickListener() {
