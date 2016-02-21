@@ -46,7 +46,7 @@ public class AcceptRequest extends AppCompatActivity {
     List<String> courselist=new ArrayList<>();
     private SwipeRefreshLayout swipeContainer;
     ArrayAdapter<String> adapter;
-    TableView tv = new TableView();
+    //TableView tv = new TableView();
 
 
 
@@ -102,12 +102,12 @@ public class AcceptRequest extends AppCompatActivity {
                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                     SendInfo info = postSnapshot.getValue(SendInfo.class);
                     request.add(info);
-                    int c = 0;
-                    for (int i = 0; i < courselist.size(); i++) {
-                        if (courselist.get(i).equalsIgnoreCase(info.getCourse()))
-                            c++;
-                    }
-                    if(c == 0)
+                   // int c = 0;
+                   // for (int i = 0; i < courselist.size(); i++) {
+                    //    if (courselist.get(i).equalsIgnoreCase(info.getCourse()))
+                          //  c++;
+                  //  }
+                   // if(c == 0)
                     courselist.add(info.getCourse());
                         //Log.e("aviral", info.toString());
 
@@ -145,13 +145,23 @@ public class AcceptRequest extends AppCompatActivity {
         list.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent next = new Intent(getApplicationContext(), TableView.class);
-                startActivity(next);
                 String name = courselist.get(position);
-                //String num = tv.addList(name, request);
-                //firebaseRef.child(num).removeValue();
-                prepareListData();
+                request.remove(position);
+                firebaseRef.removeValue();
+                for (int i = 0; i < request.size(); i++) {
+                    SendInfo si = new SendInfo(request.get(i).getCourse(), request.get(i).getTime(), request.get(i).getLoc(), request.get(i).getCloc(), request.get(i).getCellNumber());
+                    firebaseRef.push().setValue(si);
+                }
             }
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Intent next = new Intent(getApplicationContext(), TableView.class);
+//                startActivity(next);
+//                String name = courselist.get(position);
+//                //String num = tv.addList(name, request);
+//                //firebaseRef.child(num).removeValue();
+//                prepareListData();
+//            }
         });
 
         //e1.setText(course);

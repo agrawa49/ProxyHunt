@@ -54,7 +54,7 @@ public class PostRequest extends AppCompatActivity {
         String cloc = e4.getText().toString();
         String cellNumber = e5.getText().toString();
 
-        if (!course.equals("")) {
+        if (!course.equals("") && !time.equals("") && !loc.equals("") && !cloc.equals("") && !cellNumber.equals("")) {
             SendInfo si = new SendInfo(course, time, loc, cloc, cellNumber);
             firebaseRef.push().setValue(si);
 
