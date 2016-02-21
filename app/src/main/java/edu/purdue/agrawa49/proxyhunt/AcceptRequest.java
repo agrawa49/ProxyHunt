@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -45,6 +46,7 @@ public class AcceptRequest extends AppCompatActivity {
     List<String> courselist=new ArrayList<>();
     private SwipeRefreshLayout swipeContainer;
     ArrayAdapter<String> adapter;
+    TableView tv = new TableView();
 
 
 
@@ -140,16 +142,15 @@ public class AcceptRequest extends AppCompatActivity {
         ListView list = (ListView) findViewById(R.id.listViewAccept);
         list.setAdapter(adapter);
         swipeContainer.setRefreshing(false);
-        list.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        list.setOnItemClickListener(new OnItemClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent next = new Intent(getApplicationContext(), TableView.class);
+                startActivity(next);
                 String name = courselist.get(position);
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
+                //String num = tv.addList(name, request);
+                //firebaseRef.child(num).removeValue();
+                prepareListData();
             }
         });
 
