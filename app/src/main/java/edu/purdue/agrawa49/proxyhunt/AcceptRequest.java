@@ -48,7 +48,6 @@ public class AcceptRequest extends AppCompatActivity {
     List<String> courselist=new ArrayList<>();
     private SwipeRefreshLayout swipeContainer;
     ArrayAdapter<String> adapter;
-    //TableView tv = new TableView();
 
 
 
